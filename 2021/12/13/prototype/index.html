@@ -13,25 +13,25 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="引言原型模式相对来说比较简单，可能听着比较陌生，事实上工作中用的也不多，面试也较少提及，但是在一些底层源码中经常能看到它的身影。原型模式内容不多，但是我会引申出一些相关联的知识，希望能耐心看下去。">
+  <meta name="description" content="原型模式相对来说比较简单，可能听着比较陌生，事实上工作中用的也不多，面试也较少提及，但是在一些底层源码中经常能看到它的身影。原型模式内容不多，但是我会引申出一些相关联的知识，希望能耐心看下去。">
   <meta name="author" content="扫地僧">
   <meta name="keywords" content="">
-  <meta name="description" content="引言原型模式相对来说比较简单，可能听着比较陌生，事实上工作中用的也不多，面试也较少提及，但是在一些底层源码中经常能看到它的身影。原型模式内容不多，但是我会引申出一些相关联的知识，希望能耐心看下去。">
+  <meta name="description" content="原型模式相对来说比较简单，可能听着比较陌生，事实上工作中用的也不多，面试也较少提及，但是在一些底层源码中经常能看到它的身影。原型模式内容不多，但是我会引申出一些相关联的知识，希望能耐心看下去。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="原型模式">
 <meta property="og:url" content="http://example.com/2021/12/13/prototype/index.html">
 <meta property="og:site_name" content="爱上扫地僧">
-<meta property="og:description" content="引言原型模式相对来说比较简单，可能听着比较陌生，事实上工作中用的也不多，面试也较少提及，但是在一些底层源码中经常能看到它的身影。原型模式内容不多，但是我会引申出一些相关联的知识，希望能耐心看下去。">
+<meta property="og:description" content="原型模式相对来说比较简单，可能听着比较陌生，事实上工作中用的也不多，面试也较少提及，但是在一些底层源码中经常能看到它的身影。原型模式内容不多，但是我会引申出一些相关联的知识，希望能耐心看下去。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/img/%E5%8E%9F%E5%9E%8B%E6%A8%A1%E5%BC%8F.assets/image-20211210172813438.png">
-<meta property="og:image" content="http://example.com/img/%E5%8E%9F%E5%9E%8B%E6%A8%A1%E5%BC%8F.assets/image-20211210173911505.png">
-<meta property="og:image" content="http://example.com/img/%E5%8E%9F%E5%9E%8B%E6%A8%A1%E5%BC%8F.assets/image-20211210190235917.png">
+<meta property="og:image" content="http://example.com/img/design_pattern/prototype.assets/image-20211210172813438.png">
+<meta property="og:image" content="http://example.com/img/design_pattern/prototype.assets/image-20211210173911505.png">
+<meta property="og:image" content="http://example.com/img/design_pattern/prototype.assets/image-20211210190235917.png">
 <meta property="article:published_time" content="2021-12-13T03:01:07.000Z">
-<meta property="article:modified_time" content="2021-12-17T07:12:17.822Z">
+<meta property="article:modified_time" content="2021-12-17T11:06:59.306Z">
 <meta property="article:author" content="扫地僧">
 <meta property="article:tag" content="设计模式">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://example.com/img/%E5%8E%9F%E5%9E%8B%E6%A8%A1%E5%BC%8F.assets/image-20211210172813438.png">
+<meta name="twitter:image" content="http://example.com/img/design_pattern/prototype.assets/image-20211210172813438.png">
   
   <title>原型模式 - 爱上扫地僧</title>
 
@@ -254,9 +254,7 @@
             <h1 style="display: none">原型模式</h1>
             
             <div class="markdown-body">
-              <h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>原型模式相对来说比较简单，可能听着比较陌生，事实上工作中用的也不多，面试也较少提及，但是在一些底层源码中经常能看到它的身影。<br>原型模式内容不多，但是我会引申出一些相关联的知识，希望能耐心看下去。</p>
-<span id="more"></span>
-<p>在正式开始介绍原型模式之前，我们先来看一个案例。</p>
+              <h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>原型模式相对来说比较简单，可能听着比较陌生，事实上工作中用的也不多，面试也较少提及，但是在一些底层源码中经常能看到它的身影。<br>原型模式内容不多，但是我会引申出一些相关联的知识，希望能耐心看下去。<br>在正式开始介绍原型模式之前，我们先来看一个案例。</p>
 <h4 id="模拟场景"><a href="#模拟场景" class="headerlink" title="模拟场景"></a>模拟场景</h4><p>假设有一个班级类，其属性结构如下：</p>
 <div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Class</span> </span>&#123;
     <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> classNo; <span class="hljs-comment">// 班级编号</span>
@@ -384,12 +382,12 @@ Class&#123;classNo=<span class="hljs-number">1</span>, className=<span class="hl
 <h4 id="原理分析"><a href="#原理分析" class="headerlink" title="原理分析"></a>原理分析</h4><p>上述情况是怎么造成的，我们来讨论一下。</p>
 <p>首先我们得达成一个共识，一个类中的属性分为基本数据类型和引用数据类型，基本数据类型存放的就是具体的数值，而<strong>引用类型存放的是对象的引用</strong>，而不是存放的对象。这一点很重要，也是很多人的一个误区。</p>
 <p>当我们克隆student对象时，其实只是克隆了student对象的引用，并没有真正克隆一个新的student对象，不知道大家能不能理解，看下图：</p>
-<p><img src="/img/%E5%8E%9F%E5%9E%8B%E6%A8%A1%E5%BC%8F.assets/image-20211210172813438.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/img/design_pattern/prototype.assets/image-20211210172813438.png" srcset="/img/loading.gif" lazyload></p>
 <p>这样其实就能理解为什么我们修改了cloneClass对象的学生姓名以后，原型对象clazz的学生姓名也被修改了，因为大家其实还是用的同一个对象。</p>
 <p>了解了浅克隆的问题，那么如何解决呢？那就得用深克隆了。</p>
 <h2 id="深克隆"><a href="#深克隆" class="headerlink" title="深克隆"></a>深克隆</h2><h4 id="基本概念-2"><a href="#基本概念-2" class="headerlink" title="基本概念"></a>基本概念</h4><p><code>深克隆</code>（Deep Clone）是将原型对象中的所有类型，无论是值类型还是引用类型，都复制一份给克隆对象，也就是说深克隆会把原型对象和原型对象所引用的对象，都复制一份给克隆对象。</p>
 <h4 id="原理分析-1"><a href="#原理分析-1" class="headerlink" title="原理分析"></a>原理分析</h4><p>明白了浅克隆存在的问题，其实就好理解深克隆了。既然克隆对象的引用不行，那我就把引用的对象也克隆一份就好了，如下图所示：</p>
-<p><img src="/img/%E5%8E%9F%E5%9E%8B%E6%A8%A1%E5%BC%8F.assets/image-20211210173911505.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/img/design_pattern/prototype.assets/image-20211210173911505.png" srcset="/img/loading.gif" lazyload></p>
 <p>到这儿应该彻底明白深克隆和浅克隆了吧。如果觉得我讲的还不错，记得帮我点个赞(^_^)v</p>
 <h4 id="深克隆的实现方式"><a href="#深克隆的实现方式" class="headerlink" title="深克隆的实现方式"></a>深克隆的实现方式</h4><ol>
 <li>改造clone方法</li>
@@ -436,7 +434,7 @@ Class&#123;classNo=<span class="hljs-number">1</span>, className=<span class="hl
 <h4 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h4><p>​    这种方式的主要缺陷是每一个抽象原型的子类都必须实现clone操作，实现clone函数可能会很困难。当所考虑的类已经存在时就难以新增clone操作，当内部包括一些不支持克隆或有循环引用的对象时，实现克隆可能也会很困难的。这可能也是为什么会有人用序列化去实现深克隆。</p>
 <h2 id="扩展知识"><a href="#扩展知识" class="headerlink" title="扩展知识"></a>扩展知识</h2><p>我们一直在说，浅克隆只能克隆基本数据类型，引用类型是需要进行深克隆的，那么String需要进行深克隆吗？</p>
 <p>不需要，因为String虽然是引用类型，但是它的值是存在常量池中的，常量池本身就是共享的。如果我们克隆的对象更改了值，在常量池中其实是生成一个新的值(String是不可变的)，那么它的引用会直接指向常量池中新的值，而不会影响原型对象的值，所以不需要对String进行深克隆，如图所示：</p>
-<p><img src="/img/%E5%8E%9F%E5%9E%8B%E6%A8%A1%E5%BC%8F.assets/image-20211210190235917.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/img/design_pattern/prototype.assets/image-20211210190235917.png" srcset="/img/loading.gif" lazyload></p>
 <h2 id="有态度的总结"><a href="#有态度的总结" class="headerlink" title="有态度的总结"></a>有态度的总结</h2><ol>
 <li>原型模式就是对象的复制，主要使用Object类下的clone方法实现，而且一定要实现Cloneable接口；</li>
 <li>深克隆与浅克隆的问题中，会发生深克隆的有Java中的8种基本类型以及它们的包装类型，另外还有String类型，其余的都是浅克隆。</li>
@@ -577,7 +575,7 @@ Class&#123;classNo=<span class="hljs-number">1</span>, className=<span class="hl
 
   <footer class="text-center mt-5 py-3">
   <div class="footer-content">
-     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span></span>Copyright by monksweep</a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>All Rights Reserved</span></a> 
+     <a href="https://monksweep.github.io/" target="_blank" rel="nofollow noopener"><span></span>Copyright by monksweep</a> <i class="iconfont icon-love"></i> <a href="https://monksweep.github.io/" target="_blank" rel="nofollow noopener"><span>All Rights Reserved</span></a> 
   </div>
   
   <div class="statistics">

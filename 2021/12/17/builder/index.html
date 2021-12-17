@@ -1,0 +1,741 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/myico.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="在正式学习建造者模式之前，我一直把那种链式编程当成是建造者模式，类似obj.set(&#34;A&#34;).set(&#34;B&#34;).set(&#34;C&#34;).build();这种，后来认真的去研究了一下，发现并不是我想象的那样，怎么说呢，对但不完全对。">
+  <meta name="author" content="扫地僧">
+  <meta name="keywords" content="">
+  <meta name="description" content="在正式学习建造者模式之前，我一直把那种链式编程当成是建造者模式，类似obj.set(&quot;A&quot;).set(&quot;B&quot;).set(&quot;C&quot;).build();这种，后来认真的去研究了一下，发现并不是我想象的那样，怎么说呢，对但不完全对。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="建造者模式">
+<meta property="og:url" content="http://example.com/2021/12/17/builder/index.html">
+<meta property="og:site_name" content="爱上扫地僧">
+<meta property="og:description" content="在正式学习建造者模式之前，我一直把那种链式编程当成是建造者模式，类似obj.set(&quot;A&quot;).set(&quot;B&quot;).set(&quot;C&quot;).build();这种，后来认真的去研究了一下，发现并不是我想象的那样，怎么说呢，对但不完全对。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/design_pattern/builder.assets/computer-9463666-9463670.png">
+<meta property="article:published_time" content="2021-12-17T03:00:00.000Z">
+<meta property="article:modified_time" content="2021-12-17T11:05:12.817Z">
+<meta property="article:author" content="扫地僧">
+<meta property="article:tag" content="设计模式">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/img/design_pattern/builder.assets/computer-9463666-9463670.png">
+  
+  <title>建造者模式 - 爱上扫地僧</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/rainbow.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"Fwv8UteFi2u6X7FDokvPSaAa-gzGzoHsz","app_key":"yosNLes1LpfRR3DfrLBVaIEU","server_url":null,"path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>爱上扫地僧</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="建造者模式">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-author" aria-hidden="true"></i>
+      扫地僧
+    </span>
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-12-17 11:00" pubdate>
+        2021年12月17日 上午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      4.9k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      15 分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- LeanCloud 统计文章PV -->
+      <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="leancloud-page-views"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">建造者模式</h1>
+            
+            <div class="markdown-body">
+              <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在正式学习建造者模式之前，我一直把那种链式编程当成是建造者模式，类似obj.set(“A”).set(“B”).set(“C”).build();这种，后来认真的去研究了一下，发现并不是我想象的那样，怎么说呢，对但不完全对。为了真正搞懂建造者模式，也是查阅了大量的资料，发现网上包括很多视频也是讲的比较片面，有的甚至是错的，很容易误导初学者，所以特此记录一下。</p>
+<h2 id="建造者模式"><a href="#建造者模式" class="headerlink" title="建造者模式"></a>建造者模式</h2><h4 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h4><p><code>建造者模式</code>（Builder Pattern）将一个复杂对象的构建和它的表示分离，使同样的构建过程可以创建不同的表示。</p>
+<p>不知道各位看这个概念明白没有，反正我第一次是没看懂，看图解释一下吧。</p>
+<p><img src="/img/design_pattern/builder.assets/computer-9463666-9463670.png" srcset="/img/loading.gif" lazyload alt="主机示意图"></p>
+<p>上图左边是电脑的各个部件，包括CPU、主板、硬盘、内存条，右边是完整的主机。主机就可以看作是复杂的对象，我们组装电脑的过程就叫复杂对象的构建，分离其实就是解耦合；组装电脑的时候可以使用不同型号的部件去组装，比如CPU有Intel和AMD，主板有华硕和联想等等，虽然最后组装好的产品都是主机，但是主机的性能肯定是不一样的，这就叫同样的构建过程可以创建不同的表示。</p>
+<h4 id="结构"><a href="#结构" class="headerlink" title="结构"></a>结构</h4><p>建造者模式包含如下角色：</p>
+<ul>
+<li><code>Product</code>(产品)：具体产品对象</li>
+<li><code>Builder</code>(抽象建造者)：创建一个产品各个部件的接口</li>
+<li><code>ConcreteBuilder</code>(具体建造者)：实现抽象建造者对应的接口</li>
+<li><code>Director</code>(指挥者)：创建一个复杂的对象，控制具体的流程</li>
+</ul>
+<h4 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h4><ol>
+<li>先创建一个<strong>产品</strong>类</li>
+</ol>
+<div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Computer</span> </span>&#123;
+    <span class="hljs-keyword">private</span> String board; <span class="hljs-comment">// 主板</span>
+    <span class="hljs-keyword">private</span> String cpu; <span class="hljs-comment">// cpu</span>
+    <span class="hljs-keyword">private</span> String disk; <span class="hljs-comment">// 硬盘</span>
+    <span class="hljs-keyword">private</span> String memory; <span class="hljs-comment">// 内存条</span>
+    <span class="hljs-comment">// 省略get/set/toString方法 </span>
+&#125;</code></pre></div>
+
+<ol start="2">
+<li>创建一个<strong>抽象建造者</strong>类</li>
+</ol>
+<div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ComputerBuilder</span> </span>&#123;
+  	<span class="hljs-comment">// 构建主机的抽象部件</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-keyword">void</span> <span class="hljs-title">board</span><span class="hljs-params">()</span></span>;
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-keyword">void</span> <span class="hljs-title">cpu</span><span class="hljs-params">()</span></span>;
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-keyword">void</span> <span class="hljs-title">disk</span><span class="hljs-params">()</span></span>;
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-keyword">void</span> <span class="hljs-title">memory</span><span class="hljs-params">()</span></span>;
+
+  	<span class="hljs-comment">// 构建主机的抽象方法</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> Computer <span class="hljs-title">buildComputer</span><span class="hljs-params">()</span></span>;
+&#125;</code></pre></div>
+
+<ol start="3">
+<li>有了抽象类，就得有对应的实现，创建一个<strong>具体建造者</strong>实现类</li>
+</ol>
+<div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">LenovoComputer</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">ComputerBuilder</span></span>&#123;
+  	<span class="hljs-comment">// 具体建造者创建产品</span>
+  	<span class="hljs-keyword">private</span> Computer computer = <span class="hljs-keyword">new</span> Computer();
+  
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">board</span><span class="hljs-params">(String board)</span> </span>&#123;
+        computer.setBoard(board);
+    &#125;
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">cpu</span><span class="hljs-params">(String cpu)</span> </span>&#123;
+        computer.setCpu(cpu);
+    &#125;
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">disk</span><span class="hljs-params">(String disk)</span> </span>&#123;
+        computer.setDisk(disk);
+    &#125;
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">memory</span><span class="hljs-params">(String memory)</span> </span>&#123;
+        computer.setMemory(memory);
+    &#125;
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> Computer <span class="hljs-title">buildComputer</span><span class="hljs-params">()</span> </span>&#123;
+        <span class="hljs-keyword">return</span> computer;
+    &#125;
+&#125;</code></pre></div>
+
+<ol start="4">
+<li>最后创建一个<strong>指挥者</strong>类，Director类的主要作用是调用具体的Builder，来构建对象的各个部分，Director类起到封装作用，避免高层模块深入到建造者内部的实现类。</li>
+</ol>
+<div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Director</span> </span>&#123;
+  	<span class="hljs-keyword">private</span> ComputerBuilder computerBuilder;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Director</span><span class="hljs-params">(ComputerBuilder computerBuilder)</span> </span>&#123;
+        <span class="hljs-keyword">this</span>.computerBuilder = computerBuilder;
+    &#125;
+    <span class="hljs-comment">// 指挥者设置流程的先后顺序，返回具体产品</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> Computer <span class="hljs-title">build</span><span class="hljs-params">(String board, String cpu, String disk, String memory)</span></span>&#123;
+        computerBuilder.board(board);
+        computerBuilder.cpu(cpu);
+        computerBuilder.disk(disk);
+        computerBuilder.memory(memory);
+        <span class="hljs-keyword">return</span> computerBuilder.buildComputer();
+    &#125;
+&#125;</code></pre></div>
+
+<ol start="5">
+<li>客户端验证</li>
+</ol>
+<div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Client</span> </span>&#123;
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;
+        <span class="hljs-comment">// 具体的建造者</span>
+        ComputerBuilder builder = <span class="hljs-keyword">new</span> LenovoComputer();
+        <span class="hljs-comment">// 指挥者</span>
+        Director director = <span class="hljs-keyword">new</span> Director(builder);
+        <span class="hljs-comment">// 得到具体的产品</span>
+        Computer computer = director.build(<span class="hljs-string">&quot;联想主板&quot;</span>, <span class="hljs-string">&quot;Intel处理器&quot;</span>, <span class="hljs-string">&quot;联想硬盘&quot;</span>, <span class="hljs-string">&quot;DDR3内存条&quot;</span>);
+        System.out.println(computer.toString());
+    &#125;
+&#125;</code></pre></div>
+
+<p>输出结果：</p>
+<div class="hljs code-wrapper"><pre><code class="hljs java">Computer&#123;board=<span class="hljs-string">&#x27;联想主板&#x27;</span>, cpu=<span class="hljs-string">&#x27;Intel处理器&#x27;</span>, disk=<span class="hljs-string">&#x27;联想硬盘&#x27;</span>, memory=<span class="hljs-string">&#x27;DDR3内存条&#x27;</span>&#125;</code></pre></div>
+
+<p>从上面的代码可以看到，Computer产品是通过LenovoComputer构建的，Director封装了构建复杂产品对象的过程，对外隐藏了构建细节。ComputerBuilder和Director一起将一个复杂的对象的构建与表示分离。</p>
+<h4 id="建造者模式的优缺点"><a href="#建造者模式的优缺点" class="headerlink" title="建造者模式的优缺点"></a>建造者模式的优缺点</h4><p><strong>优点：</strong></p>
+<ul>
+<li>隐藏了产品创建的细节</li>
+</ul>
+<p>​    客户端不必知道产品内部细节，将产品本身与产品创建过程解耦，使得相同的创建过程可以创建出不同的产品对象。</p>
+<ul>
+<li>可以更加精细地控制产品的创建过程</li>
+</ul>
+<p>​    将复杂产品的创建步骤分解在不同的方法中，使得创建过程更加清晰，也更方便使用程序来控制创建过程。</p>
+<ul>
+<li>容易扩展</li>
+</ul>
+<p>​    如果有新需求，通过实现一个新的建造者类就可以完成，基本上不用修改之前的代码，符合开闭原则。</p>
+<p><strong>缺点：</strong></p>
+<p>建造者模式所创建的产品一般具有较多的共同点，其组成部分相似，如果产品之间差异很大，则不适合使用建造者模式，因此其使用范围受限制。</p>
+<h4 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h4><p>建造者模式创建的是复杂的对象，其产品的各个部分经常面临着剧烈的变化，但将它们组合在一起的算法却相对稳定，所以它通常在以下场合使用。</p>
+<ol>
+<li>创建的对象较复杂，由多个部件构成，各部件面临着复杂的变化，但部件间的建造顺序是稳定的；</li>
+<li>创建复杂对象的算法独立于该对象的组成部分以及它们的装配方式，即产品的构建过程和最终的表示是独立的。</li>
+</ol>
+<h2 id="模式扩展"><a href="#模式扩展" class="headerlink" title="模式扩展"></a>模式扩展</h2><p>建造者模式除了上面的用途外，在开发中还有一个常用的使用方式，就是当一个类构造器需要传入很多参数时，如果创建这个类的实例，代码可读性会非常差，而且很容易引入错误，此时就可以利用建造者模式进行重构。</p>
+<p>重构前代码如下：</p>
+<div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MacBook</span> </span>&#123;
+    <span class="hljs-keyword">private</span> String board; <span class="hljs-comment">// 主板</span>
+    <span class="hljs-keyword">private</span> String cpu; <span class="hljs-comment">// cpu</span>
+    <span class="hljs-keyword">private</span> String disk; <span class="hljs-comment">// 硬盘</span>
+    <span class="hljs-keyword">private</span> String memory; <span class="hljs-comment">// 内存条</span>
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">MacBook</span><span class="hljs-params">(String board, String cpu, String disk, String memory)</span> </span>&#123;
+        <span class="hljs-keyword">this</span>.board = board;
+        <span class="hljs-keyword">this</span>.cpu = cpu;
+        <span class="hljs-keyword">this</span>.disk = disk;
+        <span class="hljs-keyword">this</span>.memory = memory;
+    &#125;
+  	<span class="hljs-comment">// 省略get/set/toString方法</span>
+&#125;
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Client</span> </span>&#123;
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;
+        <span class="hljs-comment">// 重构前</span>
+        MacBook macBook = <span class="hljs-keyword">new</span> MacBook(<span class="hljs-string">&quot;苹果主板&quot;</span>,<span class="hljs-string">&quot;M1处理器&quot;</span>, <span class="hljs-string">&quot;苹果硬盘&quot;</span>,<span class="hljs-string">&quot;苹果内存条&quot;</span>);
+        System.out.println(macBook.toString());
+    &#125;
+&#125;</code></pre></div>
+
+<p>上面在客户端代码中构建MacBook对象，传递了四个参数，如果参数更多呢？代码的可读性及使用成本就会很高。</p>
+<p>重构后代码：</p>
+<div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MacBook</span> </span>&#123;
+    <span class="hljs-keyword">private</span> String board; <span class="hljs-comment">// 主板</span>
+    <span class="hljs-keyword">private</span> String cpu; <span class="hljs-comment">// cpu</span>
+    <span class="hljs-keyword">private</span> String disk; <span class="hljs-comment">// 硬盘</span>
+    <span class="hljs-keyword">private</span> String memory; <span class="hljs-comment">// 内存条</span>
+
+    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-title">MacBook</span><span class="hljs-params">(Builder builder)</span> </span>&#123;
+        <span class="hljs-keyword">this</span>.board = builder.board;
+        <span class="hljs-keyword">this</span>.cpu = builder.cpu;
+        <span class="hljs-keyword">this</span>.disk = builder.disk;
+        <span class="hljs-keyword">this</span>.memory = builder.memory;
+    &#125;
+
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Builder</span> </span>&#123;
+        <span class="hljs-keyword">private</span> String board;
+        <span class="hljs-keyword">private</span> String cpu;
+        <span class="hljs-keyword">private</span> String disk;
+        <span class="hljs-keyword">private</span> String memory;
+
+        <span class="hljs-function"><span class="hljs-keyword">public</span> Builder <span class="hljs-title">setBoard</span><span class="hljs-params">(String board)</span> </span>&#123;
+            <span class="hljs-keyword">this</span>.board = board;
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
+        &#125;
+        <span class="hljs-function"><span class="hljs-keyword">public</span> Builder <span class="hljs-title">setCpu</span><span class="hljs-params">(String cpu)</span> </span>&#123;
+            <span class="hljs-keyword">this</span>.cpu = cpu;
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
+        &#125;
+        <span class="hljs-function"><span class="hljs-keyword">public</span> Builder <span class="hljs-title">setDisk</span><span class="hljs-params">(String disk)</span> </span>&#123;
+            <span class="hljs-keyword">this</span>.disk = disk;
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
+        &#125;
+        <span class="hljs-function"><span class="hljs-keyword">public</span> Builder <span class="hljs-title">setMemory</span><span class="hljs-params">(String memory)</span> </span>&#123;
+            <span class="hljs-keyword">this</span>.memory = memory;
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
+        &#125;
+        <span class="hljs-function"><span class="hljs-keyword">public</span> MacBook <span class="hljs-title">build</span><span class="hljs-params">()</span> </span>&#123;
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> MacBook(<span class="hljs-keyword">this</span>);
+        &#125;
+    &#125;
+    <span class="hljs-comment">// 省略toString方法</span>
+&#125;</code></pre></div>
+
+<p>客户端验证：</p>
+<div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Client</span> </span>&#123;
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;
+        MacBook macBook = <span class="hljs-keyword">new</span> MacBook.Builder()
+                .setBoard(<span class="hljs-string">&quot;苹果主板&quot;</span>)
+                .setCpu(<span class="hljs-string">&quot;M1处理器&quot;</span>)
+                .setDisk(<span class="hljs-string">&quot;苹果硬盘&quot;</span>)
+                .setMemory(<span class="hljs-string">&quot;苹果内存条&quot;</span>)
+                .build();
+        System.out.println(macBook.toString());
+    &#125;
+&#125;</code></pre></div>
+
+<p>输出结果：</p>
+<div class="hljs code-wrapper"><pre><code class="hljs java">MacBook&#123;board=<span class="hljs-string">&#x27;苹果主板&#x27;</span>, cpu=<span class="hljs-string">&#x27;M1处理器&#x27;</span>, disk=<span class="hljs-string">&#x27;苹果硬盘&#x27;</span>, memory=<span class="hljs-string">&#x27;苹果内存条&#x27;</span>&#125;</code></pre></div>
+
+<p>重构后的代码在使用起来更方便，某种程度上也可以提高开发效率。</p>
+<p>这就是我开头提到的链式编程，当初一直把这个误以为就是建造者模式。一定要分清楚，这只是建造者模式的一种扩展用法，标准的写法是最开始那种。</p>
+<h2 id="有态度的总结"><a href="#有态度的总结" class="headerlink" title="有态度的总结"></a>有态度的总结</h2><ol>
+<li><p>建造者模式可以将构建和装配解耦，一步一步创建一个复杂的对象，它也属于创建型模式；</p>
+</li>
+<li><p>工作中如果构造对象的参数特别多，常使用建造者模式对构造函数进行优化。</p>
+</li>
+</ol>
+<p>OK，建造者模式讲完了，我们下期见～</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E7%B2%BE%E9%80%89%E6%96%87%E7%AB%A0/">精选文章</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章均为原创，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/12/16/factory/">
+                        <span class="hidden-mobile">工厂模式</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"Fwv8UteFi2u6X7FDokvPSaAa-gzGzoHsz","appKey":"yosNLes1LpfRR3DfrLBVaIEU","path":"window.location.pathname","placeholder":"欢迎评论区留言","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false,"visitor":true},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          Fluid.plugins.initFancyBox('#valine .vcontent img:not(.vemoji)');
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://monksweep.github.io/" target="_blank" rel="nofollow noopener"><span></span>Copyright by monksweep</a> <i class="iconfont icon-love"></i> <a href="https://monksweep.github.io/" target="_blank" rel="nofollow noopener"><span>All Rights Reserved</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- LeanCloud 统计PV -->
+        <span id="leancloud-site-pv-container" style="display: none">
+            总访问量 
+            <span id="leancloud-site-pv"></span>
+             次
+          </span>
+      
+      
+        <!-- LeanCloud 统计UV -->
+        <span id="leancloud-site-uv-container" style="display: none">
+            总访客数 
+            <span id="leancloud-site-uv"></span>
+             人
+          </span>
+      
+
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+  <script defer src="/js/leancloud.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

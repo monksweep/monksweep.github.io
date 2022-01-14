@@ -13,27 +13,23 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="桥接模式也是比较简单的设计模式，在日常工作生活中经常听到这个名字，熟悉而又陌生，那么我们今天来一探究竟，看看桥接模式到底是什么？">
+  <meta name="description" content="第一波Java超高频面试题集合，来看看有没有你不会的～">
   <meta name="author" content="Java摆渡人">
   <meta name="keywords" content="Java摆渡人,分布式,微服务,设计模式,MySQL,算法,消息队列,JVM,缓存,搜索">
-  <meta name="description" content="桥接模式也是比较简单的设计模式，在日常工作生活中经常听到这个名字，熟悉而又陌生，那么我们今天来一探究竟，看看桥接模式到底是什么？">
+  <meta name="description" content="第一波Java超高频面试题集合，来看看有没有你不会的～">
 <meta property="og:type" content="article">
-<meta property="og:title" content="桥接模式到底是个什么东西？">
-<meta property="og:url" content="http://example.com/2022/01/06/design_pattern/bridge/index.html">
+<meta property="og:title" content="HashMap夺命连环18问，你扛得住吗？">
+<meta property="og:url" content="http://example.com/2022/01/14/interview/hashmap/index.html">
 <meta property="og:site_name" content="Java摆渡人">
-<meta property="og:description" content="桥接模式也是比较简单的设计模式，在日常工作生活中经常听到这个名字，熟悉而又陌生，那么我们今天来一探究竟，看看桥接模式到底是什么？">
+<meta property="og:description" content="第一波Java超高频面试题集合，来看看有没有你不会的～">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/img/design_pattern/bridge.assets/extends.jpg">
-<meta property="og:image" content="http://example.com/img/design_pattern/bridge.assets/demension.jpg">
-<meta property="og:image" content="http://example.com/img/design_pattern/bridge.assets/bridge_demo.jpg">
-<meta property="article:published_time" content="2022-01-06T02:30:00.000Z">
-<meta property="article:modified_time" content="2022-01-06T02:43:27.851Z">
+<meta property="article:published_time" content="2022-01-14T07:38:58.000Z">
+<meta property="article:modified_time" content="2022-01-14T08:06:14.707Z">
 <meta property="article:author" content="Java摆渡人">
-<meta property="article:tag" content="设计模式">
+<meta property="article:tag" content="Java基础">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://example.com/img/design_pattern/bridge.assets/extends.jpg">
   
-  <title>桥接模式到底是个什么东西？ - Java摆渡人</title>
+  <title>HashMap夺命连环18问，你扛得住吗？ - Java摆渡人</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
@@ -183,7 +179,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="桥接模式到底是个什么东西？">
+            <span class="h2" id="subtitle" title="HashMap夺命连环18问，你扛得住吗？">
               
             </span>
 
@@ -198,8 +194,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2022-01-06 10:30" pubdate>
-        2022年1月6日 上午
+      <time datetime="2022-01-14 15:38" pubdate>
+        2022年1月14日 下午
       </time>
     </span>
   
@@ -209,7 +205,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      2k 字
+      2.8k 字
     </span>
   
 
@@ -218,7 +214,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      6 分钟
+      9 分钟
     </span>
   
 
@@ -255,138 +251,152 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">桥接模式到底是个什么东西？</h1>
+            <h1 style="display: none">HashMap夺命连环18问，你扛得住吗？</h1>
             
             <div class="markdown-body">
-              <h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>桥接模式也是比较简单的设计模式，在日常工作生活中经常听到这个名字，熟悉而又陌生，那么我们今天来一探究竟，看看桥接模式到底是什么？</p>
-<p>假设现在有这么个需求，创建不同类型的电脑，每种类型的电脑有不同的品牌，如下图：</p>
-<p><img src="/img/design_pattern/bridge.assets/extends.jpg" srcset="/img/loading.gif" lazyload></p>
-<p>我们常规的做法就是使用继承的方式来设计，但是缺点也很明显，假如我要增加一种类型或者品牌的电脑，就需要创建很多的类（类爆炸），扩展性很差。</p>
-<p>而且这种设计方式违反了单一职责原则，例如<code>联想台式电脑</code>类，它既包含品牌，又包含电脑类型。</p>
-<h4 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h4><p>这个场景中有两个变化的维度：品牌，类型。</p>
-<p><img src="/img/design_pattern/bridge.assets/demension.jpg" srcset="/img/loading.gif" lazyload></p>
-<p>如果我们想增加类型或者品牌，仅需在横纵坐标上添加类即可，那么类型和品牌的交叉点正是我们理想的结果。</p>
-<p>问题就聚焦到了实现交叉点的逻辑，使用桥接模式就可以完美解决这个问题。</p>
-<h2 id="桥接模式"><a href="#桥接模式" class="headerlink" title="桥接模式"></a>桥接模式</h2><h4 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h4><p><code>桥接模式</code>(Bridge Pattern)是将抽象部分与它的实现部分分离，使它们都可以独立地变化。它是一种对象结构性模式。</p>
-<blockquote>
-<p><code>核心思想</code></p>
-<ul>
-<li>分离抽象与具体</li>
-<li>用组合方式(桥)连接抽象与具体</li>
-</ul>
-</blockquote>
-<h4 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h4><p>接下来使用桥接模式实现上述案例需求。</p>
+              <div class="note note-success">
+            <p>说说你对hash的理解？</p>
+          </div>
+
+<p>hash的基本概念就是把任意长度的输入通过一个hash算法之后映射成固定长度的输出。</p>
+<div class="note note-success">
+            <p>hash算法会存在什么问题？</p>
+          </div>
+
+<p>在程序中可能碰到两个值经过hash算法之后算出同样的hash值，也就是会发生hash冲突。</p>
+<div class="note note-success">
+            <p>hash冲突能避免吗？</p>
+          </div>
+
+<p>不能，只能尽量避免。举个例子，10个苹果放到9个盒子里，肯定有一个盒子里的苹果数大于1。</p>
+<div class="note note-success">
+            <p>你认为好的hash算法，应该考虑的点有哪些？</p>
+          </div>
+
 <ol>
-<li>新建品牌接口，并提供苹果和联想的实现类</li>
+<li>效率肯定得高，要做到长文本也能高效计算出hash值；</li>
+<li>hash值不能让它逆推出原文；</li>
+<li>两次输入，只要有一点不同，它也得保证这个hash值是不同的；</li>
+<li>尽可能分散。</li>
 </ol>
-<div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-comment">// 品牌接口</span>
-<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">Brand</span> </span>&#123;
-    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">info</span><span class="hljs-params">()</span></span>;
-&#125;
-<span class="hljs-comment">// 苹果品牌</span>
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MacBook</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Brand</span></span>&#123;
-    <span class="hljs-meta">@Override</span>
-    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">info</span><span class="hljs-params">()</span> </span>&#123;
-        System.out.print(<span class="hljs-string">&quot;苹果&quot;</span>);
-    &#125;
-&#125;
-<span class="hljs-comment">// 联想品牌</span>
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ThinkPad</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Brand</span> </span>&#123;
-    <span class="hljs-meta">@Override</span>
-    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">info</span><span class="hljs-params">()</span> </span>&#123;
-        System.out.print(<span class="hljs-string">&quot;联想&quot;</span>);
-    &#125;
-&#125;</code></pre></div>
+<div class="note note-success">
+            <p>HashMap的数据结构是什么？</p>
+          </div>
 
-<ol start="2">
-<li>新建类型的抽象类，提供笔记本和台式机的实现</li>
+<p>哈希表结构（也叫散列表）实现，即数组+链表。在JDK1.8中加入了红黑树。以JDK1.8为例，它的每个数据单元都是一个Node对象，对象中有key，value，next及hash字段。</p>
+<div class="note note-success">
+            <p>你知道HashMap中hash的实现吗？为什么要这样实现？</p>
+          </div>
+
+<p>JDK1.8中，是通过hashCode的高16位异或低16位实现的：(h = k.hashCode()) ^ (h &gt;&gt;&gt; 16)，主要是从速度，功效和质量来考虑的，因为HashMap内部散列表，大多数场景下，不会特别大。也就是说<code>table.length - 1</code>得到的二进制数，实际有效位很有限，一般都在低16位以内，这样的话高16位就等于完全浪费了。减少系统开销，也不会造成因为高位没有参与下标的计算，从而引起的碰撞。</p>
+<div class="note note-success">
+            <p>那你说一下JDK1.7到JDK1.8HashMap发生了什么变化？</p>
+          </div>
+
+<ol>
+<li>在JDK1.8中，Entry被Node替代（换了个马甲）；</li>
+<li>1.7中底层是数组+链表，1.8中底层是数组+链表+红黑树，加红黑树的目的是提高HashMap插入和查询整体效率；</li>
+<li>1.7中链表插入使用的是头插法，1.8中链表插入使用的是尾插法，因为1.8中插入key和value时需要判断链表元素个数，所以需要遍历链表统计链表元素个数，所以正好就直接使用尾插法；</li>
+<li>1.7中哈希算法比较复杂，存在各种右移与异或运算，1.8中进行了简化，因为负载的哈希算法的目的就是提高散列性，来提高HashMap的整体效率，而1.8中新增了红黑树，所以可以适当的简化哈希算法，节省CPU资源。</li>
 </ol>
-<div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-comment">// 电脑类型接口</span>
-<span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Computer</span> </span>&#123;
-    <span class="hljs-comment">// 使用组合的方式将品牌关联起来</span>
-    <span class="hljs-keyword">private</span> Brand brand;
+<div class="note note-success">
+            <p>散列表是什么时候创建的？new HashMap()的时候吗？</p>
+          </div>
 
-    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Computer</span><span class="hljs-params">(Brand brand)</span> </span>&#123;
-        <span class="hljs-keyword">this</span>.brand = brand;
-    &#125;
-    <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">info</span><span class="hljs-params">()</span></span>&#123;
-        <span class="hljs-comment">// 自带品牌</span>
-        <span class="hljs-keyword">this</span>.brand.info();
-    &#125;
-&#125;
-<span class="hljs-comment">// 台式机类型</span>
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Desktop</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Computer</span></span>&#123;
-  
-    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Desktop</span><span class="hljs-params">(Brand brand)</span> </span>&#123;
-        <span class="hljs-keyword">super</span>(brand);
-    &#125;
-  
-    <span class="hljs-meta">@Override</span>
-    <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">info</span><span class="hljs-params">()</span> </span>&#123;
-        <span class="hljs-keyword">super</span>.info();
-        System.out.println(<span class="hljs-string">&quot;台式机&quot;</span>);
-    &#125;
-&#125;
-<span class="hljs-comment">// 笔记本类型</span>
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Laptop</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Computer</span></span>&#123;
+<p>不是。散列表是懒加载机制，只有第一次put数据的时候，它才创建。</p>
+<div class="note note-success">
+            <p>详细说一下HashMap的Put方法吧</p>
+          </div>
 
-    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Laptop</span><span class="hljs-params">(Brand brand)</span> </span>&#123;
-        <span class="hljs-keyword">super</span>(brand);
-    &#125;
-
-    <span class="hljs-meta">@Override</span>
-    <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">info</span><span class="hljs-params">()</span> </span>&#123;
-        <span class="hljs-keyword">super</span>.info();
-        System.out.println(<span class="hljs-string">&quot;笔记本&quot;</span>);
-    &#125;
-&#125;</code></pre></div>
-
-<ol start="3">
-<li>客户端验证</li>
+<ol>
+<li>根据key通过哈希算法与运算得出数组下标；</li>
+<li>如果数组下标位置元素为空，则将key和value封装为Entry对象(JDK1.7中是Entry对象，JDK1.8中是Node对象)并放入该位置；</li>
+<li>如果数组下标位置元素不为空，则要分情况讨论</li>
 </ol>
-<div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Client</span> </span>&#123;
-    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;
-        <span class="hljs-comment">// 我想要一个苹果笔记本</span>
-        Computer computer = <span class="hljs-keyword">new</span> Laptop(<span class="hljs-keyword">new</span> MacBook());
-        computer.info();
-
-        <span class="hljs-comment">// 我想要一个联想台式机</span>
-        Computer computer1 = <span class="hljs-keyword">new</span> Desktop(<span class="hljs-keyword">new</span> ThinkPad());
-        computer1.info();
-    &#125;
-&#125;</code></pre></div>
-
-<p>输出结果：</p>
-<div class="hljs code-wrapper"><pre><code class="hljs java">苹果笔记本
-联想台式机</code></pre></div>
-
-
-
-<p>这样就实现了桥接模式，可能类比较多，不能体会到桥接模式的妙用，我们画个图来直观的感受一下为什么叫桥接模式：</p>
-<p><img src="/img/design_pattern/bridge.assets/bridge_demo.jpg" srcset="/img/loading.gif" lazyload alt="一图胜千言"></p>
-<p>对比一下使用继承的方式，是不是可以明显的感觉到桥接模式的魅力。既减少了类的数量，也增加了程序的扩展性，之后无论是增加电脑类型还是品牌，彼此互不影响，至于客户想要什么电脑，自己组装就行了。</p>
-<h4 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h4><p>优点：</p>
 <ul>
-<li><p>桥接模式替代多继承方案，可以减少子类的个数，降低管理和维护成本。</p>
-</li>
-<li><p>桥接模式提高了系统的扩展性，在两个变化维度中任意扩展一个维度，都不需要修改原有系统。</p>
+<li>如果是JDK1.7，则先判断是否需要扩容，如果要扩容就进行扩容，如果不用扩容就生成Entry对象，并使用<strong>头插法</strong>添加到当前位置的链表中</li>
+<li>如果是JDK1.8，则会先判断当前位置上的Node的类型，看是红黑树Node，还是链表Node<ul>
+<li>如果是红黑树Node，则将key和value封装为一个红黑树节点并添加到红黑树中去，在这个过程中会判断红黑树中是否存在当前key，如果存在则更新value</li>
+<li>如果此位置上的Node对象是链表节点，则将key和value封装为一个链表Node并通过<strong>尾插法</strong>插入到链表的最后位置去，因为是尾插法，所以需要遍历链表，在遍历链表的过程中会判断是否存在当前key，如果存在则更新value，当遍历完链表后，将新链表Node插入到链表中，插入到链表后，会看当前链表的节点个数，<strong>如果超过了8，并且数组长度超过了64，那么则会将该链表转成红黑树</strong></li>
+<li>将key和value封装为Node插入到链表或红黑树中后，再判断是否需要进行扩容，如果需要就扩容，如果不需要就结束put方法</li>
+</ul>
 </li>
 </ul>
-<p>缺点：</p>
-<ul>
-<li>桥接模式的引入增加了系统的理解和设计难度，由于聚合关联关系建立在抽象层，要求开发者针对抽象进行设计与编程。</li>
-<li>桥接模式要求正确识别出系统中<strong>两个独立变化的维度</strong>，因此其使用范围有一定的局限性。</li>
-</ul>
-<h4 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h4><p><strong>银行转账系统</strong></p>
-<p>转账分类：网上转账，柜台转账，ATM转账</p>
-<p>转账用户类型：普通，金卡，银卡</p>
-<p><strong>消息管理</strong></p>
-<p>消息类型：即时消息，延时消息</p>
-<p>消息分类：短信，邮件，站内信</p>
-<h2 id="有态度的总结"><a href="#有态度的总结" class="headerlink" title="有态度的总结"></a>有态度的总结</h2><ol>
-<li>桥接模式使用组合替代了多重继承，减少类的个数，增加了扩展性；</li>
-<li>对于那些不希望使用继承或因为多重继承导致系统类个数急剧增加的系统，桥接模式尤为适用。</li>
+<div class="note note-success">
+            <p>HashMap默认的负载因子是多少？负载因子有什么用？</p>
+          </div>
+
+<p>默认的负载因子是0.75。负载因子的作用是用于计算扩容阈值。比如使用无参构造方法创建的HashMap对象，它默认情况下扩容阈值就是16 * 0.75=12。</p>
+<div class="note note-success">
+            <p>HashMap什么时候会扩容？</p>
+          </div>
+
+<p>当HashMap中的元素个数超过阈值threshold时，就会进行扩容。<br>阈值(threshold) = 数组大小(capacity) * 负载因子(loadFactor)</p>
+<div class="note note-success">
+            <p>触发扩容后，会扩容多大，算法是什么？</p>
+          </div>
+
+<p>HashMap扩容时会扩容为原数组的2倍。扩容的算法是根据上一次tablesize位移运算得到的（左移1位运算），比如默认tablesize是16，那么扩容后的大小为16 &lt;&lt; 1 = 32。</p>
+<div class="note note-success">
+            <p>扩容算法为什么采用位移运算，而不直接乘2？</p>
+          </div>
+
+<p>提高性能。因为cpu不支持乘法运算，所有的乘法运算最终都会在指令层面转换为加法，效率低。</p>
+<div class="note note-success">
+            <p>扩容是如何实现的？</p>
+          </div>
+
+<p>HashMap扩容的过程是比较复杂的，大致过程如下：</p>
+<p>扩容需要重新分配一个新数组，新数组是老数组的2倍，然后遍历整个老数组，把所有的元素挨个重新hash分配到新结构中去。</p>
+<div class="note note-success">
+            <p>链表转化为红黑树需要达到什么条件？</p>
+          </div>
+
+<p>两个条件：</p>
+<ol>
+<li>链表长度达到8；</li>
+<li>当前散列表长度已经达到64。</li>
 </ol>
+<p>如果散列表长度不到64，就算slot内部链表长度到了8，它也不会链转树，它仅仅会发生一次resize，散列表扩容。</p>
+<div class="note note-success">
+            <p>JDK1.8 HashMap为什么引入红黑树？解决什么问题？</p>
+          </div>
+
+<p>主要就是解决hash冲突导致链化严重的问题（链表过深）。在JDK1.7及之前版本，当slot链化非常严重的时候，严重影响get查询效率。本身散列表最理想的查询效率为O(1)，但是链化特别严重后，就会导致查询退化为O(n)。</p>
+<div class="note note-success">
+            <p>拉链法导致的链表过深问题为什么不用二叉查找树代替，而选择红黑树？为什么不一直使用红黑树？</p>
+          </div>
+
+<p>之所以选择红黑树是为了解决二叉查找树的缺陷，二叉查找树在特殊情况下会变成一条线型结构（这就跟原来使用的链表一样了），遍历查找会非常慢。</p>
+<p>而红黑树在插入新数据后可能需要通过左旋、右旋、变色这些操作来保持平衡，引入红黑树就是为了查找数据快，解决链表查询深度的问题。红黑树是一种近似平衡的二叉查找树，他并非绝对平衡，但是可以保证任何一个节点的左右子树的高度不会超过二者中较低的那个的一倍。</p>
+<p>所以树化有一个前提是长度大于8，如果链表长度很短的话，根本不需要引入红黑树，引入反而会慢。</p>
+<div class="note note-success">
+            <p>红黑树有什么特点？</p>
+          </div>
+
+<ol>
+<li>每个节点非红即黑；</li>
+<li>根节点必须是黑色。叶子节点必须是黑色空节点；</li>
+<li>红色节点不能连续；</li>
+<li>从叶节点到根节点的路径上，每条路径都含有相同个数的黑色节点。</li>
+</ol>
+<hr>
+<p>你以为HashMap的问题就这些了吗？不，这只是入门水平。还有很多疑问，比如：</p>
+<ul>
+<li><p>为什么HashMap数组长度必须是2的n次幂？</p>
+</li>
+<li><p>扩容机制的细节是什么样的？</p>
+</li>
+<li><p>HashMap死循环是什么？</p>
+</li>
+<li><p>红黑树写入操作，如何找到父节点？</p>
+</li>
+<li><p>高低位异或是什么？什么是高位链与低位链？</p>
+</li>
+<li><p>HashMap为什么线程不安全？</p>
+</li>
+</ul>
+<p><strong>关注公众号「Java摆渡人」，带你玩转Java面试。</strong></p>
 
             </div>
             <hr>
@@ -396,7 +406,7 @@
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/%E7%B2%BE%E9%80%89%E6%96%87%E7%AB%A0/">精选文章</a>
+                      <a class="hover-with-bg" href="/categories/%E9%9D%A2%E8%AF%95%E9%94%A6%E5%9B%8A/">面试锦囊</a>
                     
                   </div>
                 
@@ -404,7 +414,7 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a>
+                      <a class="hover-with-bg" href="/tags/Java%E5%9F%BA%E7%A1%80/">Java基础</a>
                     
                   </div>
                 
@@ -421,18 +431,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/01/14/interview/hashmap/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">HashMap夺命连环18问，你扛得住吗？</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/01/04/design_pattern/adapter/">
-                        <span class="hidden-mobile">适配器模式原来这么简单！</span>
+                      <a href="/2022/01/06/design_pattern/bridge/">
+                        <span class="hidden-mobile">桥接模式到底是个什么东西？</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

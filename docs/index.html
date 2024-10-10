@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>刚崽的学习笔记</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="description" content="Description">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+  <link rel="icon" href="img/favicon.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="./css/custom.css" type="text/css">
+  <link rel="stylesheet" href="//unpkg.com/docsify/lib/themes/vue.css">
+</head>
+<body>
+
+  <!-- 定义加载时候的动作 -->
+  <div id="app">努力加载中...</div>
+  <button id="back-to-top" class="to-top">🔝</button>
+  <script>
+      window.$docsify = {
+          // 项目名称
+          name: '学习笔记',
+          // 仓库地址，点击右上角的Github章鱼猫头像会跳转到此地址
+          repo: 'https://github.com/monksweep',
+          // 侧边栏支持，默认加载的是项目根目录下的_sidebar.md文件
+          loadSidebar: true,
+          // 导航栏支持，默认加载的是项目根目录下的_navbar.md文件
+          loadNavbar: false,
+          // 封面支持，默认加载的是项目根目录下的_coverpage.md文件
+          coverpage: true,
+          // 最大支持渲染的标题层级(默认情况下会抓取文档中所有标题渲染成目录，可配置最大支持渲染的标题层级)
+          maxLevel: 3,
+          // 自定义侧边栏后默认不会再生成目录，设置生成目录的最大层级（建议配置为2-4）
+          subMaxLevel: 3,
+          // 切换页面后是否自动跳转到页面顶部。
+          auto2top: true,
+          // 你可能想要浏览到一个目录时，只显示这个目录自己的侧边栏，这可以通过在每个文件夹中添加一个_sidebar.md文件来实现。_sidebar.md的加载逻辑是从每层目录下获取文件，如果当前目录不存在该文件则回退到上一级目录。例如当前路径为/zh-cn/more-pages则从/zh-cn/_sidebar.md获取文件，如果不存在则从/_sidebar.md获取。当然你也可以配置alias避免不必要的回退过程
+          alias: {
+            '/.*/_sidebar.md': '/_sidebar.md'
+          },
+          pagination: {
+            previousText: '上一章',
+            nextText: '下一章',
+          },
+          copyCode: {
+            buttonText : '复制',
+            errorText  : '复制失败!',
+            successText: '复制成功!'
+          },
+          search: {
+              maxAge: 86400000,// 过期时间，单位毫秒，默认一天
+              paths: 'auto',// 注意：仅适用于 paths: 'auto' 模式
+              placeholder: '🔍 搜索',
+              noData: '找不到结果',
+              depth: 4,
+              // 是否隐藏其他侧边栏内容
+              hideOtherSidebarContent: false,
+              // 避免搜索索引冲突
+              // 同一域下的多个网站之间
+              namespace: 'monksweep',
+          }
+      }
+  </script>
+  <script>
+      // 置顶按钮
+      document.addEventListener('DOMContentLoaded', function() {
+        var backToTopButton = document.getElementById('back-to-top');
+
+        window.addEventListener('scroll', function() {
+          if (window.scrollY > 300) {
+            backToTopButton.style.visibility = 'visible';
+            backToTopButton.style.opacity = '1';
+          } else {
+            backToTopButton.style.visibility = 'hidden';
+            backToTopButton.style.opacity = '0';
+          }
+        });
+
+        backToTopButton.addEventListener('click', function() {
+          window.scrollTo({top: 0, behavior: 'smooth'});
+        });
+      });
+  </script>
+
+  <script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
+  <!-- 图片缩放插件 -->
+  <script src="https://cyc-1256109796.cos.ap-guangzhou.myqcloud.com/zoom-image.min.js"></script>
+  <!--搜索插件-->
+  <script src="https://cdn.bootcss.com/docsify/4.5.9/plugins/search.min.js"></script>
+  <!--语法高亮插件-->
+  <script src="//unpkg.com/prismjs/components/prism-java.min.js"></script>
+  <script src="//unpkg.com/prismjs/components/prism-bash.min.js"></script>
+  <!--分页插件-->
+  <script src="//unpkg.com/docsify-pagination/dist/docsify-pagination.min.js"></script>
+</body>
+</html>

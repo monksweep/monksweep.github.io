@@ -1,0 +1,23 @@
+.markdown-section {
+  max-width: 95% !important;
+}
+
+/*置顶按钮*/
+#back-to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #42b983;
+  color: white;
+  padding: 10px 8px;
+  border-radius: 5px;
+  border: 0px;
+  cursor: pointer;
+  opacity: 0.5;
+  visibility: hidden;
+  transition: opacity 0.3s, visibility 0s linear 0.3s;
+}
+
+#back-to-top:hover {
+  opacity: 1;
+}

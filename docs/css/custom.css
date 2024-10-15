@@ -2,22 +2,31 @@
   max-width: 95% !important;
 }
 
-/*置顶按钮*/
+/* Vue风格的置顶按钮 */
 #back-to-top {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background-color: #42b983;
-  color: white;
-  padding: 10px 8px;
-  border-radius: 5px;
-  border: 0px;
-  cursor: pointer;
-  opacity: 0.5;
-  visibility: hidden;
-  transition: opacity 0.3s, visibility 0s linear 0.3s;
+  position: fixed; /* 固定位置 */
+  bottom: 20px; /* 距离底部20px */
+  right: 20px; /* 距离右侧20px */
+  width: 50px; /* 按钮宽度 */
+  height: 50px; /* 按钮高度 */
+  background-color: #42b983; /* Vue绿 */
+  color: white; /* 文字颜色 */
+  border: none; /* 无边框 */
+  border-radius: 50%; /* 圆形按钮 */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 阴影 */
+  cursor: pointer; /* 指针样式 */
+  outline: none; /* 移除默认的轮廓线 */
+  font-size: 24px; /* 字体大小 */
+  transition: background-color 0.3s ease, transform 0.3s ease; /* 平滑过渡 */
 }
 
+/* 悬停时的样式 */
 #back-to-top:hover {
-  opacity: 1;
+  background-color: #38ac7c; /* 更深一点的绿色 */
+  transform: scale(1.1); /* 放大效果 */
+}
+
+/* 点击时的样式 */
+#back-to-top:active {
+  transform: scale(0.9); /* 缩小效果 */
 }

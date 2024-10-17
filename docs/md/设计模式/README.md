@@ -19,7 +19,7 @@
 
 **行为型模式：**
 
-- [策略模式(Strategy Pattern)——算法的封装与切换](/md/设计模式/责任链模式.md)
+- [策略模式(Strategy Pattern)——算法的封装与切换](/md/设计模式/策略模式.md)
 - [责任链模式(Chain of Responsibility Pattern)——请求的链式处理](/md/设计模式/责任链模式.md)
 - [命令模式(Command Pattern)——请求发送者与接收者解耦](DesignPattern/command-pattern.md)
 - [解释器模式(Interpreter Pattern)——自定义语言的实现](DesignPattern/interpreter-pattern.md)

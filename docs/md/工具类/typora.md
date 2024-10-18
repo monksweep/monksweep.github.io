@@ -2,7 +2,7 @@
 
 不知道各位平时写文档、记笔记用的什么软件，在markdown领域，我认为最好的软件就是Typora，我一直以来也是使用它记录一些技术内容，然而昨天我打开它的时候，弹出来这么个窗口：
 
-<img src="/md/工具类/Typora简介/typora.assets/typora.jpg" alt="typora" style="zoom:50%;margin: 0 auto;" />
+<img src="/md/工具类/typora.assets/typora.jpg" style="zoom:67%;" />
 
 它竟然收费了！简直不敢想象，当初因为免费受到无数人的追捧，纷纷夸赞良心软件，没想到如今也沦落到如此地步，不知道是资本的力量还是输给了现实，总之让人为之一惊。
 
@@ -26,7 +26,7 @@ Typora打开速度基本是秒开，没有一点延迟，不管你电脑配置�
 
 这也是我比较喜欢的，因为我工作是用的MacOS，家里备的一台ThinkPad用于~~打游戏~~学习。而Typora的话也是支持Windows、MacOS、Linux平台，不用担心设备了就不能用了。
 
-<img src="/md/工具类/Typora简介/typora.assets/image-20211202142231882.png" alt="image-20211202142231882" style="zoom:50%;" />
+![](typora.assets/image-20211202142231882.png)
 
 ### 所见即所得
 
@@ -34,7 +34,7 @@ Typora打开速度基本是秒开，没有一点延迟，不管你电脑配置�
 
 Typora提供了一个无缝的读者和作家体验。它删除了预览窗口、模式切换、标记源代码的语法符号以及所有其他不必要的干扰。相反，它提供了一个真正的实时预览功能，帮助你专注于内容本身。不用在一个小屏幕上再分成两个页面了。
 
-<img src="/md/工具类/Typora简介/typora.assets/typora.gif" alt="typora" style="zoom:65%;" />
+![](typora.assets/typora.gif)
 
 看见没，页面简洁明了，全屏写作的沉浸式体验，这才叫所见即所得，简直太棒了~
 
@@ -42,15 +42,15 @@ Typora提供了一个无缝的读者和作家体验。它删除了预览窗口�
 
 Typora虽然看上去简单，但是它的功能一点都不少。支持图片，表格，代码，数学符号，Diagrams，行内样式等等。
 
-<img src="/md/工具类/Typora简介/typora.assets/fences.png" alt="fences" style="zoom: 25%;float: left" /><img src="/md/工具类/Typora简介/typora.assets/math.png" alt="math" style="zoom:25%" />
+![](typora.assets/math.png)
 
-<img src="/md/工具类/Typora简介/typora.assets/diagram.png" alt="diagram" style="zoom:25%;float:left" /><img src="/md/工具类/Typora简介/typora.assets/inline.png" alt="inline" style="zoom:25%;" />
+![](typora.assets/inline.png)
 
 ### 支持添加主题
 
 如果你觉得它页面丑，没关系，它支持添加主题，总有一款是你的菜。
 
-![image-20211202145551643](typora.assets/image-20211202145551643.png)
+![](typora.assets/image-20211202145551643.png)
 
 ## 如何下载？
 
@@ -64,5 +64,4 @@ Typora虽然看上去简单，但是它的功能一点都不少。支持图片�
 
 **免费版**下载地址：https://typora.io/releases/all
 
-<img src="/md/工具类/Typora简介/typora.assets/image-20211202151841448.png" alt="image-20211202151841448" style="zoom: 33%;" />
-
+![](typora.assets/image-20211202151841448.png)

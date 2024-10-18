@@ -4,9 +4,10 @@
   - [消息队列](/md/消息队列/README)
   - [Linux](/md/Linux/README)
   - [算法](/md/算法/README)
-  - [工具类](/md/工具类/README)
-  - [环境安装](/md/环境安装/README)
   - [面试锦囊](/md/面试锦囊/README)
+- 工具&效率
+  - [环境安装](/md/环境安装/README)
+  - [生产力工具](/md/工具类/README)
 
 
 

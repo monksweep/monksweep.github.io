@@ -10,14 +10,14 @@
 
 下载下来之后解压就是个可执行文件，激动的双击安装打开：
 
-<img src="/md/工具类/iTerm2安装与配置/iTerm2%E5%AE%89%E8%A3%85.assets/iterm2.jpg" alt="iterm2" style="zoom: 50%" />
+<img src="iTerm2安装.assets/iterm2.jpg" style="zoom: 50%;" />
 
 
 当我看到长这个样子的时候，心态都崩了，这tm是啥，还没有Mac自带的终端好看，难道是我打开的方式不对？
 
 于是我又在网上查资料，原来iTerm2是可以配置主题的，比如：
 
-<img src="/md/工具类/iTerm2安装与配置/iTerm2%E5%AE%89%E8%A3%85.assets/oh-my-zsh.png" alt="oh-my-zsh" />
+<img src="iTerm2%E5%AE%89%E8%A3%85.assets/oh-my-zsh.png" alt="oh-my-zsh" />
 
 嗯，总算是打消了我卸载它的念头。当然，它的优点可不仅仅是界面美观，还有许多便捷的操作，比如大家想象这样一个场景：当我们正在浏览网页或者正在全屏编辑器写代码写文章，突然想到了什么，或者发现了什么，想快速打开终端，执行一两条命令，然后关闭。
 
@@ -115,7 +115,7 @@ ZSH_THEME="agnoster"
 
 修改完保存刷新配置文件，可以立马看到效果：
 
-![image-20211125132115363](iTerm2%E5%AE%89%E8%A3%85.assets/image-20211125132115363.png)
+![image-20211125132115363](iTerm2安装.assets/image-20211125132115363.png)
 
 oh-my-zsh的主题非常丰富，可以在以下地址查看已有主题：
 
@@ -139,7 +139,7 @@ A：诸位大佬都知道，Linux下shell默认是bash，还有一种shell，叫
 
 在Preferences -> Profiles -> Keys -> HotKey Window设置(我设置的是双击command键)。
 
-<img src="/md/工具类/iTerm2安装与配置/iTerm2%E5%AE%89%E8%A3%85.assets/image-20211125151100604.png" alt="image-20211125151100604"  />
+<img src="iTerm2安装.assets/image-20211125151100604.png" alt="image-20211125151100604"  />
 
 这样就可以随时双击command键打开终端了。
 
@@ -147,7 +147,7 @@ A：诸位大佬都知道，Linux下shell默认是bash，还有一种shell，叫
 
 如果你不想每次打开iTerm2都打开默认的窗口，可以在Appearance -> General 设置。
 
-![image-20211125154508021](iTerm2%E5%AE%89%E8%A3%85.assets/image-20211125154508021-7826310.png)
+![image-20211125154508021](iTerm2安装.assets/image-20211125154508021-7826310.png)
 
 勾选上面选项以后，重新打开iTerm2就会跑到顶部状态栏，再也不会出现在Dock中，也不会在启动时给你打开一个默认的窗口。
 
@@ -155,15 +155,15 @@ A：诸位大佬都知道，Linux下shell默认是bash，还有一种shell，叫
 
 在Preferences -> Profiles -> Text 进行设置。
 
-<img src="/md/工具类/iTerm2安装与配置/iTerm2%E5%AE%89%E8%A3%85.assets/image-20211125153824349.png" alt="image-20211125153824349" />
+<img src="iTerm2%E5%AE%89%E8%A3%85.assets/image-20211125153824349.png" alt="image-20211125153824349" />
 
 默认光标：
 
-![image-20211125153717120](iTerm2%E5%AE%89%E8%A3%85.assets/image-20211125153717120-7825839.png)
+![image-20211125153717120](iTerm2安装.assets/image-20211125153717120-7825839.png)
 
 修改之后：
 
-![image-20211125153757337](iTerm2%E5%AE%89%E8%A3%85.assets/image-20211125153757337-7825878.png)
+![image-20211125153757337](iTerm2安装.assets/image-20211125153757337-7825878.png)
 
 4. **自定义配色方案**
 
@@ -177,17 +177,17 @@ iTerm2提供了丰富的主题，我们可以直接拿来用。
 
 下载完成后打开设置：Preferences -> Profiles -> Colors -> Color Presets。点击import选择克隆下来的主题(在项目的schemes文件夹下)，可以全选，然后挑一个心仪的主题。
 
-![image-20211125162501971](iTerm2%E5%AE%89%E8%A3%85.assets/image-20211125162501971-7828704.png)
+![image-20211125162501971](iTerm2安装.assets/image-20211125162501971-7828704.png)
 
 效果案例：
 
-![image-20211125165300702](iTerm2%E5%AE%89%E8%A3%85.assets/image-20211125165300702-7830382.png)
+![image-20211125165300702](iTerm2安装.assets/image-20211125165300702-7830382.png)
 
 5. **剪贴板历史记录**
 
 在iTerm2的窗口中，使用快捷键Command + Shift + h可以呼出粘贴历史，支持模糊搜索。
 
-![image-20211125164446162](iTerm2%E5%AE%89%E8%A3%85.assets/image-20211125164446162.png)
+![image-20211125164446162](iTerm2安装.assets/image-20211125164446162.png)
 
 
 

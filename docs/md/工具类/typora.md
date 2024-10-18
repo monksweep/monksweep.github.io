@@ -2,7 +2,7 @@
 
 不知道各位平时写文档、记笔记用的什么软件，在markdown领域，我认为最好的软件就是Typora，我一直以来也是使用它记录一些技术内容，然而昨天我打开它的时候，弹出来这么个窗口：
 
-<img src="/md/工具类/typora.assets/typora.jpg" style="zoom:67%;" />
+<img src="typora.assets/typora.jpg" style="zoom:67%;" onerror="this.src='/md/工具类/typora.assets/typora.jpg'"/>
 
 它竟然收费了！简直不敢想象，当初因为免费受到无数人的追捧，纷纷夸赞良心软件，没想到如今也沦落到如此地步，不知道是资本的力量还是输给了现实，总之让人为之一惊。
 
@@ -42,9 +42,14 @@ Typora提供了一个无缝的读者和作家体验。它删除了预览窗口�
 
 Typora虽然看上去简单，但是它的功能一点都不少。支持图片，表格，代码，数学符号，Diagrams，行内样式等等。
 
-![](typora.assets/math.png)
+<img src="typora.assets/math.png" style="zoom: 50%;" onerror="this.src='/md/工具类/typora.assets/math.png'"/>
 
-![](typora.assets/inline.png)
+<img src="typora.assets/inline.png" style="zoom: 50%;" onerror="this.src='/md/工具类/typora.assets/inline.png'"/>
+
+<img src="typora.assets/diagram.png" style="zoom: 50%;" onerror="this.src='/md/工具类/typora.assets/diagram.png'"/>
+
+<img src="typora.assets/fences.png" style="zoom:50%;" onerror="this.src='/md/工具类/typora.assets/fences.png'"/>
+
 
 ### 支持添加主题
 

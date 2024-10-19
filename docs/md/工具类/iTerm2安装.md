@@ -10,14 +10,14 @@
 
 下载下来之后解压就是个可执行文件，激动的双击安装打开：
 
-<img src="iTerm2安装.assets/iterm2.jpg" style="zoom: 50%;" />
+<img src="iTerm2安装.assets/iterm2.jpg" style="zoom: 50%;" onerror="this.src='/md/工具类/iTerm2安装.assets/iterm2.jpg'"/>
 
 
 当我看到长这个样子的时候，心态都崩了，这tm是啥，还没有Mac自带的终端好看，难道是我打开的方式不对？
 
 于是我又在网上查资料，原来iTerm2是可以配置主题的，比如：
 
-<img src="iTerm2%E5%AE%89%E8%A3%85.assets/oh-my-zsh.png" alt="oh-my-zsh" />
+<img src="iTerm2%E5%AE%89%E8%A3%85.assets/oh-my-zsh.png" onerror="this.src='/md/工具类/iTerm2%E5%AE%89%E8%A3%85.assets/oh-my-zsh.png'"/>
 
 嗯，总算是打消了我卸载它的念头。当然，它的优点可不仅仅是界面美观，还有许多便捷的操作，比如大家想象这样一个场景：当我们正在浏览网页或者正在全屏编辑器写代码写文章，突然想到了什么，或者发现了什么，想快速打开终端，执行一两条命令，然后关闭。
 
@@ -139,7 +139,7 @@ A：诸位大佬都知道，Linux下shell默认是bash，还有一种shell，叫
 
 在Preferences -> Profiles -> Keys -> HotKey Window设置(我设置的是双击command键)。
 
-<img src="iTerm2安装.assets/image-20211125151100604.png" alt="image-20211125151100604"  />
+<img src="iTerm2安装.assets/image-20211125151100604.png" onerror="this.src='/md/工具类/iTerm2安装.assets/image-20211125151100604.png'"/>
 
 这样就可以随时双击command键打开终端了。
 
@@ -155,7 +155,7 @@ A：诸位大佬都知道，Linux下shell默认是bash，还有一种shell，叫
 
 在Preferences -> Profiles -> Text 进行设置。
 
-<img src="iTerm2%E5%AE%89%E8%A3%85.assets/image-20211125153824349.png" alt="image-20211125153824349" />
+<img src="iTerm2%E5%AE%89%E8%A3%85.assets/image-20211125153824349.png" onerror="this.src='/md/工具类/iTerm2%E5%AE%89%E8%A3%85.assets/image-20211125153824349.png'"/>
 
 默认光标：
 

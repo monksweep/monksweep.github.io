@@ -115,7 +115,7 @@ show index from table_name;
 
 各字段解释 >>>
 
-`id`：==select查询的序列号，包含一组数字，表示查询中执行select子句或操作表的顺序。==
+`id`：**select查询的序列号，包含一组数字，表示查询中执行select子句或操作表的顺序。**
 
 三种情况：
 
@@ -123,7 +123,7 @@ show index from table_name;
 2. id不同，如果是子查询，id的序号会递增，id值越大优先级越高，越先被执行
 3. id相同不同，同时存在
 
-`select_type`：==查询类型，主要是用于区别普通查询、联合查询、子查询等的复杂查询。==
+`select_type`：**查询类型，主要是用于区别普通查询、联合查询、子查询等的复杂查询。**
 
 查询类型：
 
@@ -134,9 +134,9 @@ show index from table_name;
 5. **UNION**：若第二个select出现在UNION之后，则被标记为UNION；若UNION包含在from子句的子查询中，外层select将被标记为：DERIVED
 6. **UNION RESULT**：从UNION表获取结果的select
 
-`table`：==显示这一行的数据是关于哪张表的。==
+`table`：**显示这一行的数据是关于哪张表的。**
 
-`type`：==显示查询使用了何种类型，<font color="red">从最好到最差依次是：</font>==
+`type`：**显示查询使用了何种类型，<font color="red">从最好到最差依次是：</font>**
 
 ​	<font color="red"> system > const > eq_ref > ref > range > index > all</font>
 
@@ -150,17 +150,17 @@ show index from table_name;
 6. **index**：Full Index Scan, index 与ALL区别为index类型只遍历索引树。这通常比ALL快，因为索引文件通常比数据文件小。(也就是说虽然all和Index都是读全表，但index是从索引中读取的，而all是从硬盘中读的)
 7. **all**：Full Table Scan，将遍历全表以找到匹配的行
 
-`possible_keys`：==显示可能应用在这张表中的索引，一个或多个。==查询涉及到的字段上若存在索引，则该索引将被列出，<font color="red">但不一定被查询实际使用</font>。
+`possible_keys`：**显示可能应用在这张表中的索引，一个或多个。**查询涉及到的字段上若存在索引，则该索引将被列出，<font color="red">但不一定被查询实际使用</font>。
 
-`key`：==实际使用的索引。如果为NULL，则没有使用索引。==<font color="red">查询中若使用了覆盖索引，则该索引仅出现在key列表中</font>。
+`key`：**实际使用的索引。如果为NULL，则没有使用索引。**查询中若使用了覆盖索引，则该索引仅出现在key列表中</font>。
 
-`key_len`：==表示索引中使用的字节数。==可通过该列计算查询中使用的索引的长度。在不损失精确性的情况下，长度越短越好。key_ len显示的值为索引字段的最大可能长度，<font color="red">并非实际使用长度</font>，即key_ len是根据表定义计算而得，不是通过表内检索出的。
+`key_len`：**表示索引中使用的字节数。**可通过该列计算查询中使用的索引的长度。在不损失精确性的情况下，长度越短越好。key_ len显示的值为索引字段的最大可能长度，<font color="red">并非实际使用长度</font>，即key_ len是根据表定义计算而得，不是通过表内检索出的。
 
-`ref`：==显示索引的哪一列被使用了，如果可能的话，是一个常数。==哪些列或常量被用于查找索引列上的值。（其实就是进一步说明，使用到的索引具体是哪一列）
+`ref`：**显示索引的哪一列被使用了，如果可能的话，是一个常数。**哪些列或常量被用于查找索引列上的值。（其实就是进一步说明，使用到的索引具体是哪一列）
 
-`rows`：==根据表统计信息及索引选用情况，大致估算出找到所需的记录所需要读取的行数。==
+`rows`：**根据表统计信息及索引选用情况，大致估算出找到所需的记录所需要读取的行数。**
 
-`extra`：==包含不适合在其他列中显示但十分重要的额外信息==
+`extra`：**包含不适合在其他列中显示但十分重要的额外信息**
 
 1. **Using filesort**：说明MySQL会对数据使用一个外部的索引排序，而不是按照表内的索引顺序进行读取。MySQL中无法利用索引完成的排序操作称为“文件排序”
 
@@ -277,9 +277,9 @@ ALTER TABLE 'phone' ADD INDEX Z('card');
 
 #### 3.1.4 Join语句的优化
 
-1. 尽可能减少Join语句中的NestedLoop的循环总次数：“==永远用小结果集驱动大的结果集==”
+1. 尽可能减少Join语句中的NestedLoop的循环总次数：“**永远用小结果集驱动大的结果集**”
 2. 优先优化NestedLoop的内层循环
-3. ==保证Join语句中被驱动表上Join条件字段已经被索引==
+3. **保证Join语句中被驱动表上Join条件字段已经被索引**
 4. 当无法保证被驱动表的Join条件字段被索引且内存资源充足的前提下，不要太吝惜JoinBuffer的设置
 
 ### 3.2 索引失效
@@ -298,7 +298,7 @@ ALTER TABLE staffs ADD INDEX idx_staffs_nameAgePos(name, age, pos);
 
 2. <font color="red">最佳左前缀法则</font>
 
-如果索引了多列，要遵守最左前缀法则。指的是查询从索引的最左前列开始并且==不跳过索引中的列==。
+如果索引了多列，要遵守最左前缀法则。指的是查询从索引的最左前列开始并且**不跳过索引中的列**。
 
 ![image-20210225094315753](MySQL%E7%B4%A2%E5%BC%95.assets/image-20210225094315753.png)
 
@@ -341,7 +341,7 @@ ALTER TABLE staffs ADD INDEX idx_staffs_nameAgePos(name, age, pos);
 
 「小知识」：当A表的数据集小于B表的数据集时，用exists优于in
 
-<img src="MySQL%E7%B4%A2%E5%BC%95.assets/image-20210225154625342.png" alt="image-20210225154625342" style="zoom:50%;float:left" />
+<img src="MySQL%E7%B4%A2%E5%BC%95.assets/image-20210225154625342.png" onerror="this.src='/md/数据库/MySQL%E7%B4%A2%E5%BC%95.assets/image-20210225154625342.png'" style="zoom:50%" />
 
 > `公式`：SELECT .. FROM table WHERE EXISTS (subquery)
 
@@ -353,7 +353,7 @@ ALTER TABLE staffs ADD INDEX idx_staffs_nameAgePos(name, age, pos);
 - 尽可能在索引列上完成排序操作，遵照索引建的最佳左前缀
 - 如果不在索引列上，filesort有两种算法：双路排序和单路排序
 
-`双路排序`：MySQL4.1之前是使用双路排序,字面意思就是**两次扫描磁盘**，最终得到数据（读取行指针和orderby列，对他们进行排序，然后扫描已经排序好的列表，按照列表中的值重新从列表中读取对应的数据输出）。==从磁盘取排序字段，在buffer进行排序，再从磁盘取其他字段。==
+`双路排序`：MySQL4.1之前是使用双路排序,字面意思就是**两次扫描磁盘**，最终得到数据（读取行指针和orderby列，对他们进行排序，然后扫描已经排序好的列表，按照列表中的值重新从列表中读取对应的数据输出）。**从磁盘取排序字段，在buffer进行排序，再从磁盘取其他字段。**
 
 取一批数据，要对磁盘进行了两次扫描，众所周知，I\O是很耗时的，所以在mysql4.1之后，
 
@@ -378,7 +378,7 @@ ALTER TABLE staffs ADD INDEX idx_staffs_nameAgePos(name, age, pos);
 
 **「小总结」**
 
-<img src="MySQL%E7%B4%A2%E5%BC%95.assets/image-20210225171948718.png" alt="image-20210225171948718" style="zoom:50%;float:left" />
+<img src="MySQL%E7%B4%A2%E5%BC%95.assets/image-20210225171948718.png" onerror="this.src='/md/数据库/MySQL%E7%B4%A2%E5%BC%95.assets/image-20210225171948718.png'" style="zoom:50%;" />
 
 #### 4.1.3 Group By关键字优化
 
@@ -396,7 +396,7 @@ ALTER TABLE staffs ADD INDEX idx_staffs_nameAgePos(name, age, pos);
 
 #### 4.2.2 怎么玩
 
-1. ==默认情况下，MySQL数据库没有开启慢查询日志，==需要我们手动来设置这个参数。当然，==如果不是调优需要的话，一般不建议启动该参数，==因为开启慢查询日志会或多或少带来一定的性能影响。慢查询日志支持将日志记录写入文件
+1. **默认情况下，MySQL数据库没有开启慢查询日志，**需要我们手动来设置这个参数。当然，**如果不是调优需要的话，一般不建议启动该参数，**因为开启慢查询日志会或多或少带来一定的性能影响。慢查询日志支持将日志记录写入文件
 
 2. 查看是否开启及如何开启？
 
@@ -404,13 +404,13 @@ ALTER TABLE staffs ADD INDEX idx_staffs_nameAgePos(name, age, pos);
 默认：SHOW VARIABLES LIKE '%slow_query_log%';
 ```
 
-<img src="MySQL%E7%B4%A2%E5%BC%95.assets/image-20210225173535642.png" alt="image-20210225173535642" style="zoom:50%;float:left" />
+<img src="MySQL%E7%B4%A2%E5%BC%95.assets/image-20210225173535642.png" onerror="this.src='/md/数据库/MySQL%E7%B4%A2%E5%BC%95.assets/image-20210225173535642.png'" style="zoom:50%;" />
 
 ```sql
 开启：set global slow_query_log=1;
 ```
 
-使用set global slow_query_log=1开启了慢查询日志==只对当前数据库生效==，如果MySQL重启后则会失效。
+使用set global slow_query_log=1开启了慢查询日志**只对当前数据库生效**，如果MySQL重启后则会失效。
 
 ```markdown
 # 如果要永久生效，就必须修改配置文件my.cnf (其它系统变量也是如此)
@@ -429,9 +429,9 @@ ALTER TABLE staffs ADD INDEX idx_staffs_nameAgePos(name, age, pos);
 SHOW VARIABLES LIKE 'long_query_time%'
 ```
 
-<img src="MySQL%E7%B4%A2%E5%BC%95.assets/image-20210225175026612.png" alt="image-20210225175026612" style="zoom:50%;float:left" />
+<img src="MySQL%E7%B4%A2%E5%BC%95.assets/image-20210225175026612.png" onerror="this.src='/md/数据库/MySQL%E7%B4%A2%E5%BC%95.assets/image-20210225175026612.png'" style="zoom:50%;" />
 
-可以使用命令修改，也可以在my.cnf参数里面修改。假如运行时间正好等于long_query_time的情况，并不会被记录下来。也就是说，在mysql源码里是==判断大于long_query_time， 而非大于等于。==
+可以使用命令修改，也可以在my.cnf参数里面修改。假如运行时间正好等于long_query_time的情况，并不会被记录下来。也就是说，在mysql源码里是**判断大于long_query_time， 而非大于等于。**
 
 2）修改响应时间阈值
 
@@ -460,7 +460,7 @@ set global long_query_time=3
 show global status like '%Slow_queries%';
 ```
 
-<img src="MySQL%E7%B4%A2%E5%BC%95.assets/image-20210225181633500.png" alt="image-20210225181633500" style="zoom:50%;float:left" />
+<img src="MySQL%E7%B4%A2%E5%BC%95.assets/image-20210225181633500.png" onerror="this.src='/md/数据库/MySQL%E7%B4%A2%E5%BC%95.assets/image-20210225181633500.png'" style="zoom:50%;" />
 
 4. 配置版
 
@@ -682,7 +682,7 @@ log_output=FILE
 
 【特点】偏向MyISAM存储引擎，开销小，加锁快；无死锁；锁定粒度大，发生锁冲突的概率最高，并发度最低。
 
-==读锁会阻塞写，但是不会堵塞读。而写锁则会把读和写都堵塞。==
+**读锁会阻塞写，但是不会堵塞读。而写锁则会把读和写都堵塞。**
 
 看看哪些表被锁了：
 
@@ -690,7 +690,7 @@ log_output=FILE
 > show open tables;
 ```
 
-==MyISAM的读写锁调度是写优先，这也是MyISAM不适合做写为主表的引擎。因为写锁后，其他线程不能做任何操作，大量的更新会使查询很难得到锁，从而造成永远阻塞==
+**MyISAM的读写锁调度是写优先，这也是MyISAM不适合做写为主表的引擎。因为写锁后，其他线程不能做任何操作，大量的更新会使查询很难得到锁，从而造成永远阻塞**
 
 #### 5.2.2 行锁(偏写)
 

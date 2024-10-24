@@ -1,4 +1,4 @@
-## Windows 11下MySQL5.7的下载及安装
+# Windows 11下MySQL5.7的下载及安装
 
 ### 一、下载MySQL
 

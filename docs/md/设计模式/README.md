@@ -12,7 +12,7 @@
 - [适配器模式(Adapter Pattern)——不兼容结构的协调](/md/设计模式/适配器模式.md)
 - [桥接模式(Bridge Pattern)——处理多维度变化](/md/设计模式/桥接模式.md)
 - [组合模式(Composite Pattern)——树形结构的处理](DesignPattern/composite-pattern.md)
-- [装饰模式(Decorator Pattern)——扩展系统功能](DesignPattern/decorator-pattern.md)
+- [装饰者模式(Decorator Pattern)——扩展系统功能](/md/设计模式/装饰者模式.md)
 - [外观模式(Facade Pattern)——提供统一的入口](DesignPattern/facade-pattern.md)
 - [享元模式(Flyweight Pattern)——实现对象的复用](DesignPattern/flyweight-pattern.md)
 - [代理模式(Proxy Pattern)——对象的间接访问](/md/设计模式/代理模式.md)

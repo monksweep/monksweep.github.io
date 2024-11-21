@@ -44,11 +44,18 @@ cd docs && python -m http.server 3000
 
 ### 服务器部署
 
-在服务器后台启动
+使用nginx部署：和部署所有静态网站一样，只需将服务器的访问根目录设定为 `index.html` 文件。 
 
 ```bash
-nohup docsify s -p 3000 /data/docs </dev/null &>nohup.log &
-disown
+server {
+  listen 80;
+  server_name  localhost;
+
+  location / {
+    alias /data/gitee/work/docs/;
+    index index.html;
+  }
+}
 ```
 
 

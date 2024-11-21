@@ -5,6 +5,9 @@
   - [✅ 夺命连环18问](/md/面试锦囊/hashmap)
   - [✅ 谈谈ConcurrentHashMap的扩容机制](/md/面试锦囊/hashmap_compare)
   - [✅ JDK1.7和1.8中ConcurrentHashMap的区别](/md/面试锦囊/concurrenthashmap_compare)
+- 多线程
+  - [✅ 线程池中线程异常后，销毁还是复用](/md/面试锦囊/线程池中线程异常后销毁还是复用)
+  - [✅线程池在提交任务前，可以提前创建线程吗](/md/面试锦囊/线程池在提交任务前可以提前创建线程吗)
 - Redis
   - [✅ 如何提高缓存命中率](/md/面试锦囊/如何提高缓存命中率)
 

@@ -36,6 +36,22 @@ cd docs && python -m http.server 3000
 
 
 
+### 服务器部署
+
+使用nginx部署：和部署所有静态网站一样，只需将服务器的访问根目录设定为 `index.html` 文件。 
+
+```bash
+server {
+  listen 80;
+  server_name  localhost;
+
+  location / {
+    alias /data/gitee/work/docs/;
+    index index.html;
+  }
+}
+```
+
 ### 地址
 
 项目地址：https://github.com/docsifyjs

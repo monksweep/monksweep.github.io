@@ -5,6 +5,7 @@
   - [消息队列](/studynotes/消息队列/README)
   - [Linux](/studynotes/Linux/README)
   - [算法](/studynotes/算法/README)
+  - [开源框架](/studynotes/开源框架/README)
 - 工具&效率
   - [环境安装](/studynotes/环境安装/README)
   - [生产力工具](/studynotes/工具类/README)

@@ -1,5 +1,3 @@
-# ✅ JDK1.7和1.8中ConcurrentHashMap的区别
-
 | 比较 | ConcurrentHashMap1.7 | ConcurrentHashMap1.8 |
 | --- | --- | --- |
 | 数据结构 | Segment分段锁 | 数组+链表+红黑树 |

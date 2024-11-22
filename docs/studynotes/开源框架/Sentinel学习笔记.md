@@ -150,7 +150,7 @@ curl http://localhost:8401/testA
 
 - 簇点链路 -> 列表视图 -> 找到对应的资源名 -> +流控
 
-<img src="Sentinel%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.assets/image-20201229181306671.png" alt="image-20201229181306671" style="zoom:50%;" />
+![](Sentinel%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.assets/1.png)
 
 2. 上述规则的含义为1秒内只允许查询一次，若超过1次，就直接-快速失败，我们执行一次以下命令
 
@@ -186,7 +186,7 @@ Sentinel 提供以下几种熔断策略：
 
 1. 新增降级规则（1秒内异常比例达到20%且1秒内最小请求数大于1则开启熔断）
 
-<img src="Sentinel%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.assets/image-20201230111632417.png" alt="image-20201230111632417" style="zoom:50%;" />
+![](Sentinel%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.assets/2.png)
 
 2. 修改业务方法
 
@@ -256,7 +256,7 @@ public String dealHotkey(String p1, String p2, BlockException blockException){
 
 2. 新增热点规则：包含第一个参数p1的请求，QPS不能大于1
 
-<img src="Sentinel%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.assets/image-20201230142404311.png" alt="image-20201230142404311" style="zoom:50%;" />
+![](Sentinel%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.assets/3.png)
 
 3. 执行一次以下命令
 
@@ -288,7 +288,7 @@ http://localhost:8401/testHotkey?p1=a
 
 1. 修改热点规则，点击高级选项（填完后必须点添加按钮）
 
-<img src="Sentinel%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.assets/image-20201230144852108.png" alt="image-20201230144852108" style="zoom:50%;" />
+![](Sentinel%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.assets/4.png)
 
 2. 执行以下命令
 
@@ -350,7 +350,7 @@ public CommonResult customBlockHandler(){
 
 3. 新增流控规则
 
-<img src="Sentinel%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.assets/image-20201230161349033.png" alt="image-20201230161349033" style="zoom:50%;" />
+![](Sentinel%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.assets/5.png)
 
 4. 1秒内多次请求以下地址
 
@@ -512,7 +512,7 @@ spring:
 
 3. 进入Nacos控制台，新建配置
 
-<img src="Sentinel%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.assets/image-20201230182048835.png" alt="image-20201230182048835" style="zoom:50%;" />
+![](Sentinel%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.assets/6.png)
 
 - resource：资源名称
 - limitApp：来源应用

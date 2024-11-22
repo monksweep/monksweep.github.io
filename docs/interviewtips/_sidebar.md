@@ -1,7 +1,9 @@
 - Java基础
   - [✅ Java基础（一）](/interviewtips/base/Java基础（一）)
 - HashMap
-  - [✅ JDK1.7和1.8中ConcurrentHashMap的区别](/interviewtips/base/Java基础（一）)
+  - [✅ HashMap夺命连环18问](/interviewtips/hashmap/hashmap)
+  - [✅ JDK1.7和1.8中ConcurrentHashMap的区别](/interviewtips/hashmap/concurrenthashmap_compare)
+  - [✅ 谈谈ConcurrentHashMap的扩容机制](/interviewtips/hashmap/hashmap_compare)
 - JUC并发编程
   - [✅ volatile不能保证原子性](/interviewtips/juc/volatile不能保证原子性)
 - 多线程

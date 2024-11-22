@@ -1,5 +1,3 @@
-> 谈谈ConcurrentHashMap的扩容机制？
-
 **1.7版本**
 
 1. 1.7版本的ConcurrentHashMap是基于Segment分段实现的

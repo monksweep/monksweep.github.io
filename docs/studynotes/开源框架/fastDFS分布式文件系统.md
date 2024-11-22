@@ -22,7 +22,7 @@
 
 ​	采用分布式文件系统可以将多个地点的文件系统通过网络连接起来，组成一个文件系统网络，节点之间通过网络进行通信，一台文件系统的存储和传输能力有限，我们让文件在多台计算机上存储，通过多台计算机共同传输。
 
-<img src="fastDFS%E5%88%86%E5%B8%83%E5%BC%8F%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F.assets/image-20210312140040247.png" alt="image-20210312140040247" style="zoom:80%;" />
+![](fastDFS%E5%88%86%E5%B8%83%E5%BC%8F%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F.assets/image-20210312140040247.png)
 
 好处：
 
@@ -55,7 +55,7 @@
 
 `Hadoop分布式文件系统`(HDFS)被设计成适合运行在通用硬件上的分布式文件系统。它和现有的分布式文件系统有很多共同点。但同时，它和其他的分布式文件系统的区别也是很明显的。HDFS是一个高度容错性的系统，适合部署在廉价的机器上。HDFS能提供高吞吐量的数据访问，非常适合大规模数据集上的应用。HDFS放宽了一部分POSIX约束，来实现流式读取文件系统数据的目的。HDFS在最开始是作为Apache Nutch搜索引擎项目的基础架构而开发的。HDFS是Apache Hadoop Core项目的一部分。
 
-<img src="fastDFS%E5%88%86%E5%B8%83%E5%BC%8F%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F.assets/format,f_auto.gif" alt="img" style="zoom:80%;" />
+![](fastDFS%E5%88%86%E5%B8%83%E5%BC%8F%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F.assets/format,f_auto.gif)
 
 1. HDFS采用主从结构，一个HDFS集群由一个名称节点和若干数据节点组成。名称节点存储数据的元信息，一个完整的数据文件分成若干块存储在数据节点。
 2. 客户端从名称节点获取数据的元信息及数据分块的信息，得到信息客户端即可从数据块来存取数据。
@@ -82,7 +82,7 @@
 
 fastDFS架构包括Tracker server和Storage server。客户端请求Tracker server进行文件上传、下载，通过Tracker server调度最终由Storage server完成文件上传和下载。
 
-<img src="fastDFS%E5%88%86%E5%B8%83%E5%BC%8F%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F.assets/image-20210312144714952.png" alt="image-20210312144714952" style="zoom:80%;" />
+![](fastDFS%E5%88%86%E5%B8%83%E5%BC%8F%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F.assets/image-20210312144714952.png)
 
 #### 2.2.2 文件上传流程
 

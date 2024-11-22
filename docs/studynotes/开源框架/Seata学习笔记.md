@@ -23,11 +23,9 @@
 	管理分支事务处理的资源，与TC交谈以注册分支事务和报告分支事务的状态，并驱动分支事务提交或回滚。
 ```
 
+![Seata官网架构图](Seata%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.assets/seata-9381483.png)
 
 
-<img src="Seata%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.assets/seata-9381483.png" alt="seata" style="zoom:80%;float:left" />
-
-<center>Seata官网架构图</center>
 
 1. TM 向 TC 申请开启一个全局事务，全局事务创建成功并生成一个全局唯一的 XID；
 2. XID 在微服务调用链路的上下文中传播；
@@ -129,7 +127,6 @@ registry {
 ![solution](Seata%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.assets/solution.png)
 
 <center>官网原图</center>
-
 接下来按照此模型来学习Seata >>>
 
 我们需要创建三个服务：订单服务、库存服务、账户服务
@@ -193,7 +190,7 @@ sql地址：https://github.com/seata/seata/edit/develop/script/client/at/db/mysq
 
 最终效果：
 
-<img src="Seata%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.assets/db-9408927.png" alt="db" style="zoom:50%;" />
+![](Seata%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.assets/1.png)
 
 ### 3.2 工程准备
 
@@ -415,15 +412,15 @@ curl http://localhost:2001/order/create?userId=1&productId=1&count=10&money=10
 
 - 订单表下单的内容
 
-<img src="Seata%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.assets/image-20210106150214902.png" alt="image-20210106150214902" style="zoom:50%;float:left" />
+![](Seata%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.assets/image-20210106150214902.png)
 
 - 库存表已消耗10件，剩余90件
 
-<img src="Seata%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.assets/image-20210106150546906.png" alt="image-20210106150546906" style="zoom:50%;float:left" />
+![](Seata%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.assets/image-20210106150546906.png)
 
 - 账户表消费10元，剩余990元
 
-<img src="Seata%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.assets/image-20210106150705164.png" alt="image-20210106150705164" style="zoom:55%;float:left" />
+![](Seata%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.assets/image-20210106150705164.png)
 
 3. **停掉账户服务模拟宕机异常**
 
@@ -437,15 +434,15 @@ Load balancer does not have available server for client: seata-account-service
 
 - 订单表增加了一个新订单
 
-<img src="Seata%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.assets/image-20210106163521788.png" alt="image-20210106163521788" style="zoom:50%;float:left" />
+![](Seata%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.assets/image-20210106163521788.png)
 
 - 库存表又消耗10件，剩余80件
 
-<img src="Seata%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.assets/image-20210106163639125.png" alt="image-20210106163639125" style="zoom:50%;float:left" />
+![](Seata%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.assets/image-20210106163639125.png)
 
 - 账户表没有任何变化
 
-<img src="Seata%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.assets/image-20210106163732878.png" alt="image-20210106163732878" style="zoom:50%;float:left" />
+![](Seata%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.assets/image-20210106163732878.png)
 
 **问题出现了：库存扣减成功，但没有收到钱(˶‾᷄ ⁻̫ ‾᷅˵)**
 
@@ -491,15 +488,15 @@ Connection refused (Connection refused) executing POST http://seata-account-serv
 
 - 订单表没有新增订单
 
-<img src="Seata%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.assets/image-20210106183041837.png" alt="image-20210106183041837" style="zoom:50%;float:left" />
+![](Seata%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.assets/image-20210106183041837.png)
 
 - 库存表没有扣减库存
 
-<img src="Seata%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.assets/image-20210106183126703.png" alt="image-20210106183126703" style="zoom:50%;float:left" />
+![](Seata%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.assets/image-20210106183126703.png)
 
 - 账户表也没有扣减金额
 
-<img src="Seata%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.assets/image-20210106183217846.png" alt="image-20210106183217846" style="zoom:55%;float:left" />
+![](Seata%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.assets/image-20210106183217846.png)
 
 
 

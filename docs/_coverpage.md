@@ -6,5 +6,5 @@
  仅用于参考
 - 如有错误，欢迎指证
 
-[面试锦囊](/md/面试锦囊/README)
-[学习笔记](/README.md)
+[面试锦囊](/interviewtips/README)
+[学习笔记](/README)

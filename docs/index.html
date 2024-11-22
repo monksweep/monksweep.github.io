@@ -25,6 +25,8 @@
           repo: 'https://github.com/monksweep',
           // 侧边栏支持，默认加载的是项目根目录下的_sidebar.md文件
           loadSidebar: true,
+          // 同时设置 loadSidebar 和 autoHeader 后，可以根据 _sidebar.md 的内容自动为每个页面增加标题
+          autoHeader: true,
           // 导航栏支持，默认加载的是项目根目录下的_navbar.md文件
           loadNavbar: false,
           // 封面支持，默认加载的是项目根目录下的_coverpage.md文件
@@ -35,10 +37,14 @@
           subMaxLevel: 5,
           // 切换页面后是否自动跳转到页面顶部。
           auto2top: true,
-          // 你可能想要浏览到一个目录时，只显示这个目录自己的侧边栏，这可以通过在每个文件夹中添加一个_sidebar.md文件来实现。_sidebar.md的加载逻辑是从每层目录下获取文件，如果当前目录不存在该文件则回退到上一级目录。例如当前路径为/zh-cn/more-pages则从/zh-cn/_sidebar.md获取文件，如果不存在则从/_sidebar.md获取。当然你也可以配置alias避免不必要的回退过程
-          // alias: {
-          //   '/.*/_sidebar.md': '/_sidebar.md'
-          // },
+          // 别名
+          alias: {
+            // 你可能想要浏览到一个目录时，只显示这个目录自己的侧边栏，这可以通过在每个文件夹中添加一个_sidebar.md文件来实现。_sidebar.md的加载逻辑是从每层目录下获取文件，如果当前目录不存在该文件则回退到上一级目录。例如当前路径为/zh-cn/more-pages则从/zh-cn/_sidebar.md获取文件，如果不存在则从/_sidebar.md获取。当然你也可以配置alias避免不必要的回退过程
+            // '/.*/_sidebar.md': '/_sidebar.md'
+            '/interviewtips/.*/_sidebar.md': '/interviewtips/_sidebar.md'
+          },
+          // 启用相对路径
+          relativePath: true,
           pagination: {
             previousText: '上一章',
             nextText: '下一章',

@@ -1,1 +1,1 @@
-* [面试锦囊](/md/面试锦囊/README)
+* [面试锦囊](/studynotes/面试锦囊/README)

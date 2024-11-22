@@ -1,0 +1,11 @@
+- Java基础
+  - [✅ Java基础（一）](/interviewtips/base/Java基础（一）)
+- HashMap
+  - [✅ JDK1.7和1.8中ConcurrentHashMap的区别](/interviewtips/base/Java基础（一）)
+- JUC并发编程
+  - [✅ volatile不能保证原子性](/interviewtips/juc/volatile不能保证原子性)
+- 多线程
+  - [✅ 线程池中线程异常后，销毁还是复用](/interviewtips/multithread/线程池中线程异常后销毁还是复用)
+  - [✅ 线程池在提交任务前，可以提前创建线程吗](/interviewtips/multithread/线程池在提交任务前可以提前创建线程吗)
+- 缓存
+  - [✅ 如何提高缓存命中率](/interviewtips/cache/如何提高缓存命中率)

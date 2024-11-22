@@ -1,13 +1,13 @@
 - 学习笔记
-  - [多线程](/md/多线程/README)
-  - [MySQL](/md/数据库/README)
-  - [设计模式](md/设计模式/README)
-  - [消息队列](/md/消息队列/README)
-  - [Linux](/md/Linux/README)
-  - [算法](/md/算法/README)
+  - [多线程](/studynotes/多线程/README)
+  - [MySQL](/studynotes/数据库/README)
+  - [设计模式](studynotes/设计模式/README)
+  - [消息队列](/studynotes/消息队列/README)
+  - [Linux](/studynotes/Linux/README)
+  - [算法](/studynotes/算法/README)
 - 工具&效率
-  - [环境安装](/md/环境安装/README)
-  - [生产力工具](/md/工具类/README)
+  - [环境安装](/studynotes/环境安装/README)
+  - [生产力工具](/studynotes/工具类/README)
 - 问题排查
-  - [环境类](/md/问题排查/README)
+  - [环境类](/studynotes/问题排查/README)
 

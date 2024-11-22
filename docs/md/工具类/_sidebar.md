@@ -1,3 +1,0 @@
-- 目录
-  - [Typora简介](/md/工具类/typora.md)
-  - [iTerm2安装](/md/工具类/iTerm2安装.md)

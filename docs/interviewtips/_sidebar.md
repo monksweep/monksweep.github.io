@@ -1,6 +1,7 @@
 - Java基础
   - [✅ Java基础（一）](/interviewtips/base/Java基础（一）)
 - HashMap
+  - [✅ HashMap原理](/interviewtips/hashmap/hashmap原理)
   - [✅ HashMap夺命连环18问](/interviewtips/hashmap/hashmap)
   - [✅ JDK1.7和1.8中ConcurrentHashMap的区别](/interviewtips/hashmap/concurrenthashmap_compare)
   - [✅ 谈谈ConcurrentHashMap的扩容机制](/interviewtips/hashmap/hashmap_compare)

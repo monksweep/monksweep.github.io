@@ -2,6 +2,7 @@
   - [多线程](/studynotes/多线程/README)
   - [MySQL](/studynotes/数据库/README)
   - [设计模式](studynotes/设计模式/README)
+  - [Redis](studynotes/Redis/README)
   - [消息队列](/studynotes/消息队列/README)
   - [Linux](/studynotes/Linux/README)
   - [算法](/studynotes/算法/README)

@@ -12,3 +12,5 @@
   - [✅ 线程池在提交任务前，可以提前创建线程吗](/interviewtips/multithread/线程池在提交任务前可以提前创建线程吗)
 - 缓存
   - [✅ 如何提高缓存命中率](/interviewtips/cache/如何提高缓存命中率)
+- 场景题
+  - [✅ 10万QPS高并发请求，如何防止重复下单](/interviewtips/场景/10wQPS)
